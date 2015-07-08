@@ -28,3 +28,4 @@ Exec["apt-get update"] -> Package <| |>
 include system-update
 
 include apache-setup
+include '::mysql::server'
