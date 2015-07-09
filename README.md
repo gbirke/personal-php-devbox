@@ -10,7 +10,7 @@ At the moment, everything is very rudimentary and uses lots of defaults. I try t
 * Clone this repository
 * Install submodules with ```git submodule update --init```
 * After running ```vagrant up``` the box is set up using Puppet
-* Set up your vhosts for your projects and run `vagrant provision`.
+* Set up your vhost configurations and code in the `www` directory and run `vagrant provision`.
 * Set up your hosts file or a tool like dnsmasq to connect vhost name on the virtual machine to the dns service of your host mache. See http://passingcuriosity.com/2013/dnsmasq-dev-osx/ for dnsmasq setup on Mac OS X.
 * Open the vhost address in your browser.
 
