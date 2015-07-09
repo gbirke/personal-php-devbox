@@ -15,6 +15,20 @@ class system-update {
   }
 }
 
+class development-essentials {
+
+  $devPackages = [ "git", "vim", "curl" ]
+  package { $devPackages:
+    ensure => "installed"
+  }
+
+  # TODO https://forge.puppetlabs.com/acme/ohmyzsh
+  # TODO download git and vim config
+  # TODO install ack-grep package and alias to "ack command"
+  # TODO https://code.google.com/p/psgrep/
+
+}
+
 class apache-setup {
 
     include apache
@@ -111,3 +125,6 @@ include '::mysql::server'
 
 include 'roles::php'
 include 'roles::php_fpm'
+#TODO install other PHP QA and documentation tools
+
+include development-essentials
