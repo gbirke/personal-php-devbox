@@ -118,15 +118,26 @@ class { 'php::phpunit':
 
 
 class sites {
+
+  $global_db_user = "webuser"
+  $global_db_pass = "password123"
+  $global_db_grant = ["ALL"]
   apache::vhost { 'spenden.wikimedia.dev':
    docroot  => '/vagrant/www/spenden',
    template => '/vagrant/conf/apache/vhost.conf.erb',
  }
 
   apache::vhost { 'de.wikimedia.dev':
-    docroot  => '/vagrant/www/wiki',
+    docroot  => '/vagrant/www/mediawiki',
     template => '/vagrant/conf/apache/vhost.conf.erb',
   }
+  mysql::db { 'mediawiki':
+    user => $global_db_user,
+    password => $global_db_pass,
+    host => 'localhost',
+    grant => $global_db_grant
+  }
+
 }
 
 Exec["apt-get update"] -> Package <| |>
