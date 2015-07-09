@@ -116,6 +116,19 @@ class { 'php::phpunit':
   ensure => latest
 }
 
+
+class sites {
+  apache::vhost { 'spenden.wikimedia.dev':
+   docroot  => '/vagrant/www/spenden',
+   template => '/vagrant/conf/apache/vhost.conf.erb',
+ }
+
+  apache::vhost { 'de.wikimedia.dev':
+    docroot  => '/vagrant/www/wiki',
+    template => '/vagrant/conf/apache/vhost.conf.erb',
+  }
+}
+
 Exec["apt-get update"] -> Package <| |>
 
 include system-update
@@ -128,3 +141,5 @@ include 'roles::php_fpm'
 #TODO install other PHP QA and documentation tools
 
 include development-essentials
+
+include sites
