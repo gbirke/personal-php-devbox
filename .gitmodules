@@ -13,3 +13,12 @@
 [submodule "puppet/modules/php"]
 	path = puppet/modules/php
 	url = git@github.com:jippi/puppet-php.git
+[submodule "puppet/modules/elasticsearch"]
+	path = puppet/modules/elasticsearch
+	url = https://github.com/elastic/puppet-elasticsearch.git
+[submodule "puppet/modules/apt"]
+	path = puppet/modules/apt
+	url = https://github.com/puppetlabs/puppetlabs-apt.git
+[submodule "puppet/modules/java"]
+	path = puppet/modules/java
+	url = https://github.com/puppetlabs/puppetlabs-java.git
