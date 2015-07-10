@@ -25,7 +25,7 @@ class development-essentials {
   # TODO https://forge.puppetlabs.com/acme/ohmyzsh
   # TODO download git and vim config
   # TODO install ack-grep package and alias to "ack command"
-  # TODO https://code.google.com/p/psgrep/
+  # TODO https://github.com/jvz/psgrep
 
 }
 
@@ -56,6 +56,8 @@ class roles::php($version = 'installed') {
     -> Package['php5-cli']
     -> Php::Extension <| |>
 
+  # hack for xdebug
+  $install_dir = "/usr/lib/php5/${::php_extension_version}"
   class {
     # Base packages
     [ 'php::dev', 'php::cli' ]:
@@ -70,7 +72,16 @@ class roles::php($version = 'installed') {
       ensure => $version;
 
     [ 'php::extension::igbinary' ]:
-      ensure => installed
+      ensure => installed;
+
+    [ 'php::extension::xdebug' ]:
+      ensure => "installed",
+      settings => [
+        "set .anon/zend_extension '${install_dir}/xdebug.so'", # any better way to override this?
+        "set .anon/xdebug.remote_enable on",
+        "set .anon/xdebug.remote_connect_back on",
+        "set .anon/xdebug.idekey 'netbeans-xdebug'",
+      ];
   }
 
   # Install the INTL extension
