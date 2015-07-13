@@ -29,7 +29,7 @@ class development-essentials {
 
   $vimConfigLocation = "/home/vagrant/.vimrc"
   exec { 'install-vim-config':
-    command => "wget -O ${vimConfigLocation} https://gist.githubusercontent.com/gbirke/913899/raw/.vimrc",
+    command => "wget -O ${vimConfigLocation} https://gist.github.com/raw/913899/.vimrc",
     creates => $vimConfigLocation,
     user => "vagrant",
   }
@@ -38,6 +38,12 @@ class development-essentials {
   ohmyzsh::theme   { 'vagrant': theme => 'robbyrussell' }
   ohmyzsh::plugins { 'vagrant': plugins => 'git github git-flow composer' }
 
+  $aliasConfig = "/home/vagrant/.oh-my-zsh/custom/aliases.zsh"
+  exec { 'install-aliases-for-zsh':
+    command => "wget -O ${aliasConfig} https://gist.github.com/raw/1267907/.alias",
+    creates => $aliasConfig,
+    user => "vagrant",
+  }
 
   # TODO install ack-grep package and alias to "ack command"
   # TODO https://github.com/jvz/psgrep
