@@ -17,14 +17,35 @@ class system-update {
 
 class development-essentials {
 
-  $devPackages = [ 'git', 'vim', 'curl' ]
-  package { $devPackages:
-    ensure => 'installed'
+  $devPackages = [ "git", "vim", "curl" ]
+  ensure_packages($devPackages)
+
+  $gitConfigLocation = "/home/vagrant/.gitconfig"
+  exec { 'install-git-config':
+    command => "wget -O ${gitConfigLocation} https://gist.github.com/raw/1082842/.gitconfig",
+    creates => $gitConfigLocation,
+    user => "vagrant",
   }
 
-  # TODO https://forge.puppetlabs.com/acme/ohmyzsh
-  # TODO download git and vim config
-  # TODO install ack-grep package and alias to 'ack command'
+  $vimConfigLocation = "/home/vagrant/.vimrc"
+  exec { 'install-vim-config':
+    command => "wget -O ${vimConfigLocation} https://gist.github.com/raw/913899/.vimrc",
+    creates => $vimConfigLocation,
+    user => "vagrant",
+  }
+
+  ohmyzsh::install { 'vagrant': }
+  ohmyzsh::theme   { 'vagrant': theme => 'robbyrussell' }
+  ohmyzsh::plugins { 'vagrant': plugins => 'git github git-flow composer' }
+
+  $aliasConfig = "/home/vagrant/.oh-my-zsh/custom/aliases.zsh"
+  exec { 'install-aliases-for-zsh':
+    command => "wget -O ${aliasConfig} https://gist.github.com/raw/1267907/.alias",
+    creates => $aliasConfig,
+    user => "vagrant",
+  }
+
+  # TODO install ack-grep package and alias to "ack command"
   # TODO https://github.com/jvz/psgrep
 
 }
@@ -239,6 +260,8 @@ class sites {
 }
 
 Exec['apt-get update'] -> Package <| |>
+
+class { 'ohmyzsh': }
 
 include system-update
 
