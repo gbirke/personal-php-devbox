@@ -4,7 +4,7 @@ class sites::mediawiki {
 
   apache::vhost { 'de.wikimedia.dev':
     docroot  => '/vagrant/www/mediawiki',
-    template => '/vagrant/conf/apache/vhost.conf.erb',
+    template => 'sites/vhost_php.conf.erb',
   }
   mysql::db { 'mediawiki':
     user => "${sites::params::db_user}",
