@@ -13,6 +13,9 @@
 [submodule "puppet/modules/php"]
 	path = puppet/modules/php
 	url = git@github.com:jippi/puppet-php.git
+[submodule "puppet/modules/ohmyzsh"]
+	path = puppet/modules/ohmyzsh
+	url = https://github.com/acme/puppet-acme-oh-my-zsh.git
 [submodule "puppet/modules/elasticsearch"]
 	path = puppet/modules/elasticsearch
 	url = https://github.com/elastic/puppet-elasticsearch.git
@@ -22,6 +25,3 @@
 [submodule "puppet/modules/java"]
 	path = puppet/modules/java
 	url = https://github.com/puppetlabs/puppetlabs-java.git
-[submodule "puppet/modules/ohmyzsh"]
-	path = puppet/modules/ohmyzsh
-	url = https://github.com/acme/puppet-acme-oh-my-zsh.git
