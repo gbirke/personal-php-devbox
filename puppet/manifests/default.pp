@@ -22,8 +22,21 @@ class development-essentials {
     ensure => "installed"
   }
 
+  $gitConfigLocation = "/home/vagrant/.gitconfig"
+  exec { 'install-git-config':
+    command => "wget -O ${gitConfigLocation} https://gist.github.com/raw/1082842/.gitconfig",
+    creates => $gitConfigLocation,
+    user => "vagrant",
+  }
+
+  $vimConfigLocation = "/home/vagrant/.vimrc"
+  exec { 'install-vim-config':
+    command => "wget -O ${vimConfigLocation} https://gist.githubusercontent.com/gbirke/913899/raw/.vimrc",
+    creates => $vimConfigLocation,
+    user => "vagrant",
+  }
+
   # TODO https://forge.puppetlabs.com/acme/ohmyzsh
-  # TODO download git and vim config
   # TODO install ack-grep package and alias to "ack command"
   # TODO https://github.com/jvz/psgrep
 
