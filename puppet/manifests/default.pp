@@ -259,8 +259,11 @@ class { 'php::phpunit':
 class { 'elasticsearch':
   autoupgrade => true,
   manage_repo  => true,
-  repo_version => '1.4',
-  java_install => true
+  repo_version => '1.6',
+  java_install => true,
+  init_defaults => {
+    'ES_HEAP_SIZE' => '256m',
+  }
 }
 
 
