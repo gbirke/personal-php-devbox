@@ -18,9 +18,7 @@ class system-update {
 class development-essentials {
 
   $devPackages = [ "git", "vim", "curl" ]
-  package { $devPackages:
-    ensure => "installed"
-  }
+  ensure_packages($devPackages)
 
   $gitConfigLocation = "/home/vagrant/.gitconfig"
   exec { 'install-git-config':
@@ -36,7 +34,11 @@ class development-essentials {
     user => "vagrant",
   }
 
-  # TODO https://forge.puppetlabs.com/acme/ohmyzsh
+  ohmyzsh::install { 'vagrant': }
+  ohmyzsh::theme   { 'vagrant': theme => 'robbyrussell' }
+  ohmyzsh::plugins { 'vagrant': plugins => 'git github git-flow composer' }
+
+
   # TODO install ack-grep package and alias to "ack command"
   # TODO https://github.com/jvz/psgrep
 
@@ -141,6 +143,8 @@ class { 'php::phpunit':
 }
 
 Exec["apt-get update"] -> Package <| |>
+
+class { 'ohmyzsh': }
 
 include system-update
 
