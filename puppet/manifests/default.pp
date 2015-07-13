@@ -45,7 +45,12 @@ class development-essentials {
     user => "vagrant",
   }
 
-  # TODO install ack-grep package and alias to "ack command"
+  ensure_packages(["ack-grep"])
+  file { '/usr/bin/ack':
+    ensure => 'link',
+    target => '/usr/bin/ack-grep'
+  }
+
   # TODO https://github.com/jvz/psgrep
 
 }
