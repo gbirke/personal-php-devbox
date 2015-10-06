@@ -34,6 +34,9 @@ Vagrant.configure(2) do |config|
   #config.vm.forward_port 27017, 27017   #mongodb
   #config.vm.forward_port 3306, 3306     #mysql
 
+  # Avoid collision with Mediawiki Vagrant SSH port when this VM is started first
+  config.vm.network :forwarded_port, guest: 22, host: 2322, id: 'ssh'
+
   config.vm.provider "virtualbox" do |v|
     v.memory = 2048
   end

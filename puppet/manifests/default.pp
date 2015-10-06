@@ -181,6 +181,7 @@ class { 'elasticsearch':
 
 # Now deploy the sites
 
+include sites::spenden_cms
 include sites::spenden
 include sites::attribution
 include sites::mediawiki
