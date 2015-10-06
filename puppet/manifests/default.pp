@@ -63,6 +63,14 @@ class apache-setup {
     apache::module { 'proxy_fcgi': }
 }
 
+# Set log dir permissions so it's accessible from the outside
+# NOT recommended for production but important for development
+file { "/var/log/apache2":
+  ensure => directory,
+  mode => 0755,
+}
+
+
 class roles::php($version = 'installed') {
 
   include php
