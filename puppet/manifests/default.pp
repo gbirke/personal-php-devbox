@@ -93,7 +93,6 @@ class roles::php($version = 'installed') {
     [
       'php::extension::curl', 'php::extension::gd', 'php::extension::imagick',
       'php::extension::mcrypt', 'php::extension::mysql',
-      'php::extension::redis',
     ]:
       ensure => $version;
 
