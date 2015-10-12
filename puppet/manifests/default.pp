@@ -35,7 +35,7 @@ class development-essentials {
   }
 
   ohmyzsh::install { 'vagrant': }
-  ohmyzsh::theme   { 'vagrant': theme => 'robbyrussell' }
+  ohmyzsh::theme   { 'vagrant': theme => 'jreese' }
   ohmyzsh::plugins { 'vagrant': plugins => 'git github git-flow composer' }
 
   $aliasConfig = "/home/vagrant/.oh-my-zsh/custom/aliases.zsh"
