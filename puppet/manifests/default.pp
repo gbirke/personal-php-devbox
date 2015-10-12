@@ -190,5 +190,7 @@ class { 'elasticsearch':
 
 include sites::spenden_cms
 include sites::spenden
+include sites::fundraising_backend
+include sites::fundraising_banners
 include sites::attribution
 include sites::mediawiki
