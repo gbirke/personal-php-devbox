@@ -61,6 +61,7 @@ class apache-setup {
 
     apache::module { 'proxy': }
     apache::module { 'proxy_fcgi': }
+    apache::module { 'rewrite': }
 }
 
 # Set log dir permissions so it's accessible from the outside
