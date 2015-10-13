@@ -17,7 +17,7 @@ class system-update {
 
 class development-essentials {
 
-  $devPackages = [ "git", "vim", "curl" ]
+  $devPackages = [ "git", "vim", "curl", "zip" ]
   ensure_packages($devPackages)
 
   $gitConfigLocation = "/home/vagrant/.gitconfig"
