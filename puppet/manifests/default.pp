@@ -101,7 +101,7 @@ class roles::php($version = 'installed') {
     # PHP extensions
     [
       'php::extension::curl', 'php::extension::gd', 'php::extension::imagick',
-      'php::extension::mcrypt', 'php::extension::mysql',
+      'php::extension::mcrypt', 'php::extension::mysql', 'php::extension::sqlite',
     ]:
       ensure => $version;
 
