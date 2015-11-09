@@ -153,7 +153,10 @@ class roles::php_fpm($version = 'installed') {
     schedule => hourly
   }
 
-  php::fpm::pool { 'www': user => 'vagrant' }
+  php::fpm::pool { 'www':
+    user => 'vagrant',
+    catch_workers_output => 'yes'
+  }
 
 }
 
